@@ -19,9 +19,11 @@ import {
   Stethoscope,
   Plane,
   Phone,
+  Search,
 } from "lucide-react";
 import { treatments } from "../data/treatments";
 import { hospitals } from "../data/hospitals";
+import videoBg from "../assets/63241-505964153.mp4";
 
 const Home = () => {
   const featuredTreatments = treatments.slice(0, 3);
@@ -134,153 +136,136 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary-600 to-primary-800 text-white">
-        <div className="container mx-auto px-4 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                World-Class
-                <span className="text-primary-200 block">Medical Treatment</span>
-                in India
-              </h1>
-              <p className="text-xl text-primary-100 mb-8 leading-relaxed">
-                Save up to 80% on medical costs while receiving top-quality healthcare from JCI-accredited hospitals and
-                internationally trained doctors.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/cost-comparison" className="btn-secondary bg-white text-primary-600 hover:bg-primary-50">
-                  Get Cost Estimate
-                  <Calculator className="h-5 w-5 ml-2" />
-                </Link>
-                <Link to="/treatments" className="btn-primary bg-primary-700 hover:bg-primary-800">
-                  Browse Treatments
-                  <ArrowRight className="h-5 w-5 ml-2" />
-                </Link>
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-accent-50 to-secondary-50 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-primary-300 rounded-full blur-3xl"></div>
+        <div className="absolute top-40 right-20 w-24 h-24 bg-accent-300 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-1/4 w-40 h-40 bg-secondary-300 rounded-full blur-3xl"></div>
+      </div>
+      
+      {/* Hero Section - Fullscreen Video Background, Two Columns */}
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Video Background */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src={videoBg}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ pointerEvents: 'none' }}
+        />
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black/60 z-10" />
+        {/* Hero Content - Two Columns */}
+        <div className="relative z-20 flex flex-col md:flex-row items-center justify-center w-full h-full px-4 gap-12">
+          {/* Left Side: Headline, Description, Search */}
+          <div className="flex-1 flex flex-col justify-center items-start text-left max-w-xl">
+            <span className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-4 py-1 rounded-full text-xs font-semibold mb-6 inline-block shadow-lg">
+              #1 Medical Tourism Platform
+            </span>
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-white drop-shadow-lg">
+              Discover, compare, and book {" "}
+              <span className="bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent">
+                world-class medical care
+              </span>
+            </h1>
+            <p className="text-lg text-gray-200 mb-8 font-light leading-relaxed drop-shadow">
+              Your gateway to affordable, high-quality healthcare in India. Simple. Transparent. Trusted.
+            </p>
+            <form className="flex bg-white/90 rounded-xl shadow-lg p-2 max-w-md border border-gray-100 hover:shadow-xl transition-shadow duration-300 w-full mb-2">
+              <div className="flex items-center flex-1 px-3">
+                <Search className="h-4 w-4 text-gray-400 mr-2" />
+                <input
+                  type="text"
+                  placeholder="Search treatments, hospitals, or doctors..."
+                  className="flex-1 bg-transparent outline-none text-sm placeholder-gray-400"
+                />
               </div>
-            </div>
-            <div className="relative">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                <div className="grid grid-cols-2 gap-6">
-                  {stats.map((stat, index) => {
-                    const Icon = stat.icon;
-                    return (
-                      <div key={index} className="text-center">
-                        <Icon className="h-8 w-8 text-primary-200 mx-auto mb-2" />
-                        <div className="text-2xl font-bold mb-1">{stat.value}</div>
-                        <div className="text-sm text-primary-200">{stat.label}</div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+              <button 
+                type="submit" 
+                className="bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold px-6 py-2 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+          {/* Right Side: Stats Block */}
+          <div className="flex-1 flex flex-col justify-center items-center w-full">
+            <div className="flex flex-wrap justify-center gap-8">
+              {stats.map((stat, idx) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={idx} className="flex flex-col items-center min-w-[120px]">
+                    <Icon className="h-8 w-8 mb-1 text-white" />
+                    <span className="text-2xl font-bold text-white drop-shadow">{stat.value}</span>
+                    <span className="text-sm text-gray-200 opacity-80 text-center">{stat.label}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Comprehensive Medical Tourism Services
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From cost comparison to post-treatment care, we handle every aspect of your medical journey
-            </p>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-800 mb-3">Our Services</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Comprehensive medical tourism solutions tailored to your needs</p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => {
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {features.slice(0, 3).map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <Link
-                  key={index}
-                  to={feature.link}
-                  className="card p-6 hover:shadow-xl transition-shadow duration-300 group"
-                >
-                  <div className="bg-primary-50 w-16 h-16 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary-100 transition-colors">
+                <div key={index} className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-50 group">
+                  <div className="bg-gradient-to-br from-primary-100 to-primary-200 w-16 h-16 flex items-center justify-center rounded-full mb-4 shadow-md group-hover:scale-110 transition-transform duration-300">
                     <Icon className="h-8 w-8 text-primary-600" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary-600 transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">{feature.description}</p>
-                  <div className="flex items-center text-primary-600 font-medium">
-                    Learn More <ArrowRight className="h-4 w-4 ml-1" />
-                  </div>
-                </Link>
+                  <h3 className="text-lg font-semibold mb-2 text-gray-800">{feature.title}</h3>
+                  <p className="text-gray-500 font-light leading-relaxed text-sm">{feature.description}</p>
+                  <Link to={feature.link} className="mt-3 text-primary-600 font-medium hover:text-primary-700 transition-colors text-sm">
+                    Learn more →
+                  </Link>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* Featured Treatments */}
-      <section className="py-20 bg-gray-50">
+      {/* Recommended Treatments (Cards) */}
+      <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Popular Medical Treatments</h2>
-            <p className="text-xl text-gray-600">
-              Explore our most sought-after medical procedures with significant cost savings
-            </p>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold text-gray-800 mb-3">Popular Treatments</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">Explore our most sought-after medical procedures</p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredTreatments.map((treatment) => {
-              const savings = (
-                ((treatment.costs.usa.total - treatment.costs.india.total) / treatment.costs.usa.total) *
-                100
-              ).toFixed(0);
-              return (
-                <div key={treatment.id} className="card overflow-hidden group">
-                  <div className="aspect-w-16 aspect-h-9 bg-gray-200">
-                    <img
-                      src={treatment.image}
-                      alt={treatment.name}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-sm font-medium text-primary-600 bg-primary-50 px-2 py-1 rounded">
-                        {treatment.category}
-                      </span>
-                      <div className="flex items-center">
-                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                        <span className="text-sm text-gray-600 ml-1">{treatment.successRate}%</span>
-                      </div>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">{treatment.name}</h3>
-                    <p className="text-gray-600 mb-4">{treatment.description}</p>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-sm text-gray-500">Starting from</div>
-                        <div className="text-2xl font-bold text-primary-600">
-                          ${treatment.costs.india.total.toLocaleString()}
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm text-gray-500">Save up to</div>
-                        <div className="text-lg font-bold text-green-600">{savings}%</div>
-                      </div>
-                    </div>
-                    <Link to={`/treatments/${treatment.id}`} className="btn-primary w-full mt-4 justify-center">
-                      View Details
-                    </Link>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredTreatments.map((treatment) => (
+              <div key={treatment.id} className="bg-white rounded-2xl shadow-lg p-5 flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border border-gray-50 group">
+                <div className="relative overflow-hidden rounded-xl mb-3">
+                  <img src={treatment.image} alt={treatment.name} className="w-full h-40 object-cover shadow-md group-hover:scale-105 transition-transform duration-300" />
+                  <div className="absolute top-2 right-2 bg-primary-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                    {treatment.successRate}% Success
                   </div>
                 </div>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link to="/treatments" className="btn-secondary">
-              View All Treatments
-              <ArrowRight className="h-5 w-5 ml-2" />
-            </Link>
+                <h3 className="text-lg font-semibold mb-2 text-gray-800">{treatment.name}</h3>
+                <p className="text-gray-500 mb-2 font-light text-sm">{treatment.category}</p>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-primary-500 font-bold">${treatment.costs.india.total.toLocaleString()}</span>
+                  <div className="flex items-center text-yellow-400">
+                    <Star className="h-3 w-3 fill-current" />
+                    <span className="text-xs text-gray-600 ml-1">4.9</span>
+                  </div>
+                </div>
+                <Link to={`/treatments/${treatment.id}`} className="mt-auto bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold px-4 py-2 rounded-xl text-center transition-all duration-200 shadow-md hover:shadow-lg hover:scale-105 text-sm">
+                  View Details
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>

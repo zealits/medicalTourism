@@ -1,8 +1,12 @@
+body {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 1rem;
+  text-align: left;
 }
 
 .logo {
@@ -35,6 +39,15 @@
 
 .card {
   padding: 2em;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px rgba(2, 132, 199, 0.08);
+  background: #fff;
+  border: 1px solid #e0f2fe;
+  margin-bottom: 2rem;
+}
+
+.section {
+  margin-bottom: 3rem;
 }
 
 .read-the-docs {

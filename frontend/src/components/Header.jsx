@@ -1,139 +1,120 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Heart, Calculator, Building2, Calendar, FileText, Video, Phone, Mail } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
+<<<<<<< Updated upstream
     // { to: "/", label: "Home", icon: Heart },
     { to: "/cost-comparison", label: "Cost Comparison", icon: Calculator },
     { to: "/treatments", label: "Treatments", icon: Building2 },
     { to: "/booking", label: "Booking", icon: Calendar },
     { to: "/visa-assistance", label: "Visa Support", icon: FileText },
     { to: "/telemedicine", label: "Telemedicine", icon: Video },
+=======
+    { to: "/", label: "Home" },
+    { to: "/cost-comparison", label: "Cost" },
+    { to: "/treatments", label: "Treatments" },
+    { to: "/booking", label: "Booking" },
+    { to: "/visa-assistance", label: "Visa" },
+    { to: "/telemedicine", label: "Telemed" },
+>>>>>>> Stashed changes
   ];
 
-  const isActive = (path) => {
-    return location.pathname === path;
-  };
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        {/* Top Bar */}
-        <div className="border-b border-gray-200 py-2">
-          <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-4 text-gray-600">
-              <div className="flex items-center space-x-1">
-                <Phone className="h-4 w-4" />
-                <span>+91-1800-123-4567</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <Mail className="h-4 w-4" />
-                <span>info@medtourism.com</span>
-              </div>
-            </div>
-            <div className="hidden md:block">
-              <span className="text-primary-600 font-medium">24/7 International Patient Support</span>
-            </div>
+    <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-white via-primary-50 to-accent-50 backdrop-blur-md shadow-lg border-b border-primary-100">
+      {/* Main Navigation */}
+      <nav className="container mx-auto px-6 py-4 flex items-center justify-between max-w-7xl">
+        {/* Logo */}
+        <Link to="/" className="flex items-center space-x-3 group">
+          <div className="bg-gradient-to-tr from-primary-500 to-accent-500 p-2 rounded-xl shadow-md group-hover:shadow-lg transition-all duration-300 group-hover:scale-105">
+            <Heart className="h-7 w-7 text-white" />
           </div>
-        </div>
-
-        {/* Main Header */}
-        <div className="flex items-center justify-between py-4">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <div className="bg-primary-600 p-2 rounded-lg">
-              <Heart className="h-8 w-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">MedTourism</h1>
-              <p className="text-sm text-gray-600">India Healthcare</p>
-            </div>
-          </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => {
-              const Icon = link.icon;
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors duration-200 ${
-                    isActive(link.to)
-                      ? "bg-primary-50 text-primary-600 font-medium"
-                      : "text-gray-700 hover:bg-gray-50 hover:text-primary-600"
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span>{link.label}</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          {/* CTA Buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link to="/cost-comparison" className="btn-secondary text-sm">
-              Get Quote
-            </Link>
-            <Link to="/booking" className="btn-primary text-sm">
-              Book Now
-            </Link>
+          <div>
+            <span className="text-xl font-bold text-gray-800">MyIndiMd</span>
+            <div className="text-xs text-primary-600 font-medium">Medical Tourism</div>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+        </Link>
+        
+        {/* Desktop Nav */}
+        <ul className="hidden md:flex items-center space-x-1">
+          {navLinks.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                className={`px-4 py-2 rounded-lg transition-all duration-200 text-base font-medium relative ${
+                  isActive(link.to)
+                    ? "bg-white/80 text-primary-700 shadow-sm backdrop-blur-sm"
+                    : "text-gray-700 hover:bg-white/60 hover:text-primary-600"
+                }`}
+              >
+                {link.label}
+                {isActive(link.to) && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full"></div>
+                )}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        
+        {/* CTA Button */}
+        <div className="hidden md:block">
+          <Link 
+            to="/cost-comparison"
+            className="bg-gradient-to-r from-primary-500 to-accent-500 hover:from-primary-600 hover:to-accent-600 text-white px-4 py-2 rounded-lg text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105"
           >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+            Get Quote
+          </Link>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden border-t border-gray-200 py-4">
-            <nav className="flex flex-col space-y-2">
-              {navLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors duration-200 ${
-                      isActive(link.to)
-                        ? "bg-primary-50 text-primary-600 font-medium"
-                        : "text-gray-700 hover:bg-gray-50"
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <Icon className="h-5 w-5" />
-                    <span>{link.label}</span>
-                  </Link>
-                );
-              })}
-            </nav>
-            <div className="mt-4 pt-4 border-t border-gray-200 flex flex-col space-y-2">
+        
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 rounded-lg text-primary-700 hover:bg-white/60 transition-all duration-200"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </nav>
+      
+      {/* Mobile Nav */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-primary-100 py-4 px-6 shadow-lg">
+          <ul className="flex flex-col space-y-2">
+            {navLinks.map((link) => (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  className={`px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 block ${
+                    isActive(link.to)
+                      ? "bg-gradient-to-r from-primary-100 to-primary-200 text-primary-700 shadow-sm"
+                      : "text-gray-700 hover:bg-primary-50 hover:text-primary-600"
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li className="pt-2">
               <Link
                 to="/cost-comparison"
-                className="btn-secondary text-sm justify-center"
+                className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-4 py-3 rounded-lg text-base font-semibold block text-center shadow-md hover:shadow-lg transition-all duration-200"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Get Quote
               </Link>
-              <Link to="/booking" className="btn-primary text-sm justify-center" onClick={() => setIsMenuOpen(false)}>
-                Book Now
-              </Link>
-            </div>
-          </div>
-        )}
-      </div>
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 };
 
 export default Header;
+
