@@ -7,7 +7,7 @@ const Header = () => {
   const location = useLocation();
 
   const navLinks = [
-    { to: "/", label: "Home", icon: Heart },
+    // { to: "/", label: "Home", icon: Heart },
     { to: "/cost-comparison", label: "Cost Comparison", icon: Calculator },
     { to: "/treatments", label: "Treatments", icon: Building2 },
     { to: "/booking", label: "Booking", icon: Calendar },
