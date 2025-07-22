@@ -28,6 +28,8 @@ import dentalImplantImg from "../assets/Dental Implant.webp";
 import hipReplacementImg from "../assets/Hip Replacement.jpg";
 import cardiacBypassImg from "../assets/Cardiac Bypass Surgery.webp";
 
+const hospitalImages = import.meta.glob('../assets/*', { eager: true, as: 'url' });
+
 const Home = () => {
   const featuredTreatments = treatments.slice(0, 3).map((t, i) => ({
     ...t,
@@ -168,12 +170,9 @@ const Home = () => {
         <div className="relative z-20 flex flex-col md:flex-row items-center justify-center w-full h-full px-4 gap-12">
           {/* Left Side: Headline, Description, Search */}
           <div className="flex-1 flex flex-col justify-center items-start text-left max-w-xl pl-8 md:pl-16">
-            <span className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-4 py-1 rounded-full text-xs font-semibold mb-6 inline-block shadow-lg">
-                #1 Medical Tourism Platform
-              </span>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-white drop-shadow-lg">
               Discover, compare, and book {" "}
-              <span className="bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent">
+              <span className="text-sky-300 font-extrabold">
                 world-class medical care
               </span>
             </h1>
@@ -320,7 +319,7 @@ const Home = () => {
             {topHospitals.map((hospital) => (
               <div key={hospital.id} className="card overflow-hidden">
                 <div className="aspect-w-16 aspect-h-9 bg-gray-200">
-                  <img src={hospital.image} alt={hospital.name} className="w-full h-48 object-cover" />
+                  <img src={hospitalImages[`../assets/${hospital.image}`]} alt={hospital.name} className="w-full h-48 object-cover" />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-2">

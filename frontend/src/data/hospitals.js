@@ -10,7 +10,7 @@ export const hospitals = [
     beds: 550,
     specialties: ["Cardiac", "Orthopedic", "Oncology", "Neurology"],
     accreditations: ["JCI", "NABH", "ISO 9001"],
-    image: "/api/placeholder/400/300",
+    image: "image.png",
     gallery: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
     description: "Leading multi-specialty hospital with world-class infrastructure and international patient care.",
     facilities: [
@@ -76,7 +76,7 @@ export const hospitals = [
     beds: 310,
     specialties: ["Cardiac", "Vascular", "Transplant"],
     accreditations: ["JCI", "NABH", "ISO 14001"],
-    image: "/api/placeholder/400/300",
+    image: "modern-style-hospital-building-straight-lines-concrete-facing-30588884.webp",
     gallery: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
     description: "India's premier cardiac care center with state-of-the-art technology and expert medical team.",
     facilities: [
@@ -134,7 +134,7 @@ export const hospitals = [
     beds: 650,
     specialties: ["Multi-specialty", "Oncology", "Neurology", "Gastroenterology"],
     accreditations: ["NABH", "ISO 9001", "Green OT"],
-    image: "/api/placeholder/400/300",
+    image: "Cardiac Bypass Surgery.webp",
     gallery: ["/api/placeholder/600/400", "/api/placeholder/600/400", "/api/placeholder/600/400"],
     description: "Comprehensive healthcare with cutting-edge technology and patient-centered care.",
     facilities: [
