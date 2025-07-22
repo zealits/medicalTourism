@@ -138,7 +138,7 @@ const CostComparison = () => {
   }, [totalCostWithTravel]);
 
   const CostCard = ({ country, costs, isHighlighted = false }) => (
-    <div className={`card p-6 ${isHighlighted ? "ring-2 ring-primary-500 bg-primary-50" : ""}`}>
+    <div className={`p-6 flex flex-col ${isHighlighted ? "bg-primary-50" : ""}`}>
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <span className="text-2xl mr-2">{countries.find((c) => c.code === country)?.flag}</span>
@@ -202,7 +202,7 @@ const CostComparison = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-accent-50 to-secondary-50 pt-28">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -214,7 +214,7 @@ const CostComparison = () => {
         </div>
 
         {/* Configuration Panel */}
-        <div className="card p-6 mb-8">
+        <div className="card p-6 mb-12">
           <h2 className="text-2xl font-semibold mb-6 flex items-center">
             <Calculator className="h-6 w-6 mr-2 text-primary-600" />
             Customize Your Comparison
@@ -302,7 +302,7 @@ const CostComparison = () => {
         </div>
 
         {/* Savings Highlight */}
-        <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+        <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-12">
           <div className="flex items-center mb-4">
             <TrendingDown className="h-8 w-8 text-green-600 mr-3" />
             <h3 className="text-2xl font-bold text-green-800">Your Potential Savings</h3>
@@ -327,7 +327,7 @@ const CostComparison = () => {
         </div>
 
         {/* Cost Comparison Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-12 overflow-x-auto divide-x divide-gray-200 w-full">
           <CostCard country="india" costs={totalCostWithTravel.india} isHighlighted={true} />
           <CostCard country="usa" costs={totalCostWithTravel.usa} />
           <CostCard country="uk" costs={totalCostWithTravel.uk} />
@@ -335,7 +335,7 @@ const CostComparison = () => {
         </div>
 
         {/* Treatment Details */}
-        <div className="card p-6 mb-8">
+        <div className="p-6 mb-12 w-full">
           <h3 className="text-2xl font-semibold mb-4 flex items-center">
             <Stethoscope className="h-6 w-6 mr-2 text-primary-600" />
             Treatment Details: {selectedTreatment.name}
@@ -376,7 +376,7 @@ const CostComparison = () => {
         </div>
 
         {/* What's Included */}
-        <div className="card p-6 mb-8">
+        <div className="p-6 mb-12 w-full">
           <h3 className="text-2xl font-semibold mb-4">What's Included in India Package</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-3">
@@ -427,7 +427,7 @@ const CostComparison = () => {
         </div>
 
         {/* Important Note */}
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-8">
+        <div className="bg-yellow-50 p-6 mb-12 rounded-lg w-full">
           <div className="flex items-start">
             <AlertCircle className="h-6 w-6 text-yellow-600 mr-3 mt-0.5" />
             <div>
@@ -442,7 +442,7 @@ const CostComparison = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center">
+        <div className="text-center mb-12">
           <div className="card p-8 bg-primary-50 border border-primary-200">
             <h3 className="text-2xl font-bold text-primary-900 mb-4">Ready to Get Started?</h3>
             <p className="text-primary-700 mb-6">

@@ -42,7 +42,7 @@ const TreatmentDetails = () => {
   ).slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-accent-50 to-secondary-50 pt-28">
       <div className="container mx-auto px-4 py-8">
         {/* Back Button */}
         <Link 

@@ -24,9 +24,15 @@ import {
 import { treatments } from "../data/treatments";
 import { hospitals } from "../data/hospitals";
 import videoBg from "../assets/63241-505964153.mp4";
+import dentalImplantImg from "../assets/Dental Implant.webp";
+import hipReplacementImg from "../assets/Hip Replacement.jpg";
+import cardiacBypassImg from "../assets/Cardiac Bypass Surgery.webp";
 
 const Home = () => {
-  const featuredTreatments = treatments.slice(0, 3);
+  const featuredTreatments = treatments.slice(0, 3).map((t, i) => ({
+    ...t,
+    image: [cardiacBypassImg, hipReplacementImg, dentalImplantImg][i] || t.image,
+  }));
   const topHospitals = hospitals.slice(0, 3);
 
   const stats = [
@@ -161,10 +167,10 @@ const Home = () => {
         {/* Hero Content - Two Columns */}
         <div className="relative z-20 flex flex-col md:flex-row items-center justify-center w-full h-full px-4 gap-12">
           {/* Left Side: Headline, Description, Search */}
-          <div className="flex-1 flex flex-col justify-center items-start text-left max-w-xl">
+          <div className="flex-1 flex flex-col justify-center items-start text-left max-w-xl pl-8 md:pl-16">
             <span className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-4 py-1 rounded-full text-xs font-semibold mb-6 inline-block shadow-lg">
-              #1 Medical Tourism Platform
-            </span>
+                #1 Medical Tourism Platform
+              </span>
             <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-white drop-shadow-lg">
               Discover, compare, and book {" "}
               <span className="bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent">
@@ -192,7 +198,7 @@ const Home = () => {
             </form>
           </div>
           {/* Right Side: Stats Block */}
-          <div className="flex-1 flex flex-col justify-center items-center w-full">
+          <div className="flex-1 flex flex-col justify-center items-center w-full pr-8 md:pr-16">
             <div className="flex flex-wrap justify-center gap-8">
               {stats.map((stat, idx) => {
                 const Icon = stat.icon;
@@ -201,7 +207,7 @@ const Home = () => {
                     <Icon className="h-8 w-8 mb-1 text-white" />
                     <span className="text-2xl font-bold text-white drop-shadow">{stat.value}</span>
                     <span className="text-sm text-gray-200 opacity-80 text-center">{stat.label}</span>
-                  </div>
+              </div>
                 );
               })}
             </div>

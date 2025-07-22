@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Heart, Calculator, Building2, Calendar, FileText, Video } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
-    { to: "/cost-comparison", label: "Cost Comparison", icon: Calculator },
-    { to: "/treatments", label: "Treatments", icon: Building2 },
-    { to: "/booking", label: "Booking", icon: Calendar },
-    { to: "/visa-assistance", label: "Visa Support", icon: FileText },
-    { to: "/telemedicine", label: "Telemedicine", icon: Video },
+    { to: "/", label: "Home" },
+    { to: "/cost-comparison", label: "Cost Comparison" },
+    { to: "/treatments", label: "Treatments" },
+    { to: "/booking", label: "Booking" },
+    { to: "/visa-assistance", label: "Visa Support" },
+    { to: "/telemedicine", label: "Telemedicine" },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -43,7 +44,6 @@ const Header = () => {
                     : "text-gray-700 hover:bg-white/60 hover:text-primary-600"
                 }`}
               >
-                {link.icon && <link.icon className="inline-block h-5 w-5 mr-2 align-text-bottom" />}
                 {link.label}
                 {isActive(link.to) && (
                   <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full"></div>
@@ -87,7 +87,6 @@ const Header = () => {
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {link.icon && <link.icon className="inline-block h-5 w-5 mr-2 align-text-bottom" />}
                   {link.label}
                 </Link>
               </li>
