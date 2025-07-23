@@ -53,7 +53,53 @@ const CostComparison = () => {
         uk: { treatment: 40000, hospital: 8000, consultation: 1200, tests: 1800, total: 51000 },
         uae: { treatment: 28000, hospital: 6000, consultation: 800, tests: 1200, total: 36000 }
       }
-    }
+    },
+    // Added more treatment options (static, for dropdown only)
+    {
+      id: 3,
+      name: "Knee Replacement",
+      category: "Orthopedic",
+      duration: "2-3 hours",
+      recovery: "4-6 weeks",
+      successRate: 97,
+      description: "Surgical procedure to replace the weight-bearing surfaces of the knee joint.",
+      costs: {
+        india: { treatment: 5500, hospital: 1200, consultation: 350, tests: 500, total: 7550 },
+        usa: { treatment: 48000, hospital: 9000, consultation: 1200, tests: 1800, total: 60000 },
+        uk: { treatment: 35000, hospital: 7000, consultation: 1000, tests: 1500, total: 44500 },
+        uae: { treatment: 25000, hospital: 5000, consultation: 700, tests: 1000, total: 31700 }
+      }
+    },
+    {
+      id: 4,
+      name: "Dental Implants",
+      category: "Dental",
+      duration: "1-2 hours",
+      recovery: "1-2 weeks",
+      successRate: 96,
+      description: "Replacement of tooth roots with metal, screwlike posts and artificial teeth.",
+      costs: {
+        india: { treatment: 1200, hospital: 300, consultation: 100, tests: 200, total: 1800 },
+        usa: { treatment: 6000, hospital: 1000, consultation: 300, tests: 400, total: 7700 },
+        uk: { treatment: 5000, hospital: 800, consultation: 250, tests: 350, total: 6400 },
+        uae: { treatment: 3500, hospital: 600, consultation: 200, tests: 300, total: 4600 }
+      }
+    },
+    {
+      id: 5,
+      name: "Cosmetic Rhinoplasty",
+      category: "Cosmetic",
+      duration: "1-2 hours",
+      recovery: "2-3 weeks",
+      successRate: 92,
+      description: "Surgical procedure to change the shape of the nose for cosmetic reasons.",
+      costs: {
+        india: { treatment: 2500, hospital: 700, consultation: 200, tests: 300, total: 3700 },
+        usa: { treatment: 12000, hospital: 2500, consultation: 500, tests: 800, total: 15800 },
+        uk: { treatment: 9000, hospital: 1800, consultation: 400, tests: 600, total: 11800 },
+        uae: { treatment: 7000, hospital: 1200, consultation: 300, tests: 500, total: 9000 }
+      }
+    },
   ];
 
   const [selectedTreatment, setSelectedTreatment] = useState(treatments[0]);
@@ -65,7 +111,12 @@ const CostComparison = () => {
     meals: 50,
     local_transport: 30,
     visa: 200,
+    insurance: 0,
+    postOpDays: 0,
+    misc: 0,
+    travelers: 1,
   });
+  const [currency, setCurrency] = useState("USD");
 
   const countries = [
     { code: "india", name: "India", flag: "🇮🇳", color: "from-blue-500 to-blue-400" },
@@ -81,6 +132,19 @@ const CostComparison = () => {
     { code: "Australia", name: "Australia", flag: "🇦🇺" },
     { code: "Germany", name: "Germany", flag: "🇩🇪" },
     { code: "France", name: "France", flag: "🇫🇷" },
+    // Added more countries
+    { code: "Italy", name: "Italy", flag: "🇮🇹" },
+    { code: "Spain", name: "Spain", flag: "🇪🇸" },
+    { code: "Russia", name: "Russia", flag: "🇷🇺" },
+    { code: "Japan", name: "Japan", flag: "🇯🇵" },
+    { code: "China", name: "China", flag: "🇨🇳" },
+    { code: "Brazil", name: "Brazil", flag: "🇧🇷" },
+    { code: "SouthAfrica", name: "South Africa", flag: "🇿🇦" },
+    { code: "UAE", name: "United Arab Emirates", flag: "🇦🇪" },
+    { code: "SaudiArabia", name: "Saudi Arabia", flag: "🇸🇦" },
+    { code: "Singapore", name: "Singapore", flag: "🇸🇬" },
+    { code: "Thailand", name: "Thailand", flag: "🇹🇭" },
+    { code: "Malaysia", name: "Malaysia", flag: "🇲🇾" },
   ];
 
   const flightCosts = {
@@ -358,114 +422,290 @@ const CostComparison = () => {
       {/* Main content below hero section */}
       <div ref={comparisonRef} className="w-full px-0 md:px-0 mt-12">
         {/* Configuration Panel */}
-        <section className="w-full p-8 mb-12 mx-auto md:w-full lg:w-full bg-blue-50">
-          <h2 className="text-3xl font-bold mb-8 flex items-center text-blue-900">
-            <Calculator className="h-8 w-8 mr-3 text-blue-600" />
-            Customize Your Comparison
-          </h2>
+        <section className="w-full flex justify-center items-center mb-12 px-2 md:px-0">
+          <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl p-8 border border-blue-100">
+            <h2 className="text-3xl font-bold mb-8 flex items-center text-blue-900">
+              <Calculator className="h-8 w-8 mr-3 text-blue-600" />
+              Customize Your Comparison
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <Stethoscope className="h-4 w-4 text-blue-500" />
+                  Select Treatment
+                </label>
+                <div className="relative">
+                  <select
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm appearance-none pr-10"
+                    value={selectedTreatment.id}
+                    onChange={(e) => setSelectedTreatment(treatments.find((t) => t.id === parseInt(e.target.value)))}
+                  >
+                    {treatments.map((treatment) => (
+                      <option key={treatment.id} value={treatment.id}>
+                        {treatment.name}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <Stethoscope className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Select Treatment</label>
-              <select
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm"
-                value={selectedTreatment.id}
-                onChange={(e) => setSelectedTreatment(treatments.find((t) => t.id === parseInt(e.target.value)))}
-              >
-                {treatments.map((treatment) => (
-                  <option key={treatment.id} value={treatment.id}>
-                    {treatment.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-blue-500" />
+                  Your Country
+                </label>
+                <div className="relative">
+                  <select
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm appearance-none pr-10"
+                    value={selectedOrigin}
+                    onChange={(e) => setSelectedOrigin(e.target.value)}
+                  >
+                    {originCountries.map((country) => (
+                      <option key={country.code} value={country.code}>
+                        {country.flag} {country.name}
+                      </option>
+                    ))}
+                  </select>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <MapPin className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
 
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Your Country</label>
-              <select
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm"
-                value={selectedOrigin}
-                onChange={(e) => setSelectedOrigin(e.target.value)}
-              >
-                {originCountries.map((country) => (
-                  <option key={country.code} value={country.code}>
-                    {country.flag} {country.name}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-blue-500" />
+                  Hospital Stay (days)
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
+                    value={additionalCosts.days}
+                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, days: parseInt(e.target.value) })}
+                    min="1"
+                    max="30"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <Clock className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
 
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Hospital Stay (days)</label>
-              <input
-                type="number"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
-                value={additionalCosts.days}
-                onChange={(e) => setAdditionalCosts({ ...additionalCosts, days: parseInt(e.target.value) })}
-                min="1"
-                max="30"
-              />
-            </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <Building className="h-4 w-4 text-blue-500" />
+                  Accommodation (per night)
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
+                    value={additionalCosts.accommodation}
+                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, accommodation: parseInt(e.target.value) })}
+                    min="50"
+                    max="500"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <Building className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
 
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Accommodation (per night)</label>
-              <input
-                type="number"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
-                value={additionalCosts.accommodation}
-                onChange={(e) => setAdditionalCosts({ ...additionalCosts, accommodation: parseInt(e.target.value) })}
-                min="50"
-                max="500"
-              />
-            </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <Users className="h-4 w-4 text-blue-500" />
+                  Meals (per day)
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
+                    value={additionalCosts.meals}
+                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, meals: parseInt(e.target.value) })}
+                    min="20"
+                    max="200"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <Users className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
 
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Meals (per day)</label>
-              <input
-                type="number"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
-                value={additionalCosts.meals}
-                onChange={(e) => setAdditionalCosts({ ...additionalCosts, meals: parseInt(e.target.value) })}
-                min="20"
-                max="200"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-sm font-semibold text-gray-700">Transport (per day)</label>
-              <input
-                type="number"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
-                value={additionalCosts.local_transport}
-                onChange={(e) => setAdditionalCosts({ ...additionalCosts, local_transport: parseInt(e.target.value) })}
-                min="10"
-                max="100"
-              />
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <Plane className="h-4 w-4 text-blue-500" />
+                  Transport (per day)
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
+                    value={additionalCosts.local_transport}
+                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, local_transport: parseInt(e.target.value) })}
+                    min="10"
+                    max="100"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <Plane className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
+              {/* New: Visa Cost (per person) */}
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <Shield className="h-4 w-4 text-blue-500" />
+                  Visa Cost (per person)
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
+                    value={additionalCosts.visa}
+                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, visa: parseInt(e.target.value) })}
+                    min="0"
+                    max="1000"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <Shield className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
+              {/* New: Number of Travelers */}
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <Users className="h-4 w-4 text-blue-500" />
+                  Number of Travelers
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
+                    value={additionalCosts.travelers}
+                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, travelers: parseInt(e.target.value) })}
+                    min="1"
+                    max="10"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <Users className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
+              {/* New: Insurance Cost */}
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <Award className="h-4 w-4 text-blue-500" />
+                  Insurance Cost
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
+                    value={additionalCosts.insurance}
+                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, insurance: parseInt(e.target.value) })}
+                    min="0"
+                    max="10000"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <Award className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
+              {/* New: Post-Operative Stay (days) */}
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <Clock className="h-4 w-4 text-blue-500" />
+                  Post-Operative Stay (days)
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
+                    value={additionalCosts.postOpDays}
+                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, postOpDays: parseInt(e.target.value) })}
+                    min="0"
+                    max="30"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <Clock className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
+              {/* New: Miscellaneous Costs */}
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <AlertCircle className="h-4 w-4 text-blue-500" />
+                  Miscellaneous Costs
+                </label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
+                    value={additionalCosts.misc}
+                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, misc: parseInt(e.target.value) })}
+                    min="0"
+                    max="10000"
+                  />
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <AlertCircle className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
+              {/* New: Currency Selector */}
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
+                  <DollarSign className="h-4 w-4 text-blue-500" />
+                  Currency
+                </label>
+                <div className="relative">
+                  <select
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm appearance-none pr-10"
+                    value={currency}
+                    onChange={(e) => setCurrency(e.target.value)}
+                  >
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                    <option value="INR">INR (₹)</option>
+                  </select>
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
+                    <DollarSign className="h-5 w-5" />
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Savings Highlight */}
-        <section className="w-full bg-blue-100 p-8 mb-12 text-blue-900 mx-auto md:w-full lg:w-full rounded-none shadow-none border-none">
-          <div className="flex items-center mb-6">
-            <TrendingDown className="h-10 w-10 mr-4 text-blue-600" />
-            <h3 className="text-3xl font-bold">Your Potential Savings</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center bg-blue-200 rounded-none p-6">
-              <div className="text-sm text-blue-700 mb-2">vs USA</div>
-              <div className="text-3xl font-bold">${savings.vsUSA.amount.toLocaleString()}</div>
-              <div className="text-sm text-blue-700">({savings.vsUSA.percentage}% savings)</div>
+        <section className="w-full flex justify-center items-center mb-12 px-2 md:px-0">
+          <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl p-8 border border-blue-100">
+            <div className="flex items-center mb-6">
+              <TrendingDown className="h-10 w-10 mr-4 text-blue-600" />
+              <h3 className="text-3xl font-bold text-blue-900">Your Potential Savings</h3>
             </div>
-            <div className="text-center bg-blue-200 rounded-none p-6">
-              <div className="text-sm text-blue-700 mb-2">vs UK</div>
-              <div className="text-3xl font-bold">${savings.vsUK.amount.toLocaleString()}</div>
-              <div className="text-sm text-blue-700">({savings.vsUK.percentage}% savings)</div>
-            </div>
-            <div className="text-center bg-blue-200 rounded-none p-6">
-              <div className="text-sm text-blue-700 mb-2">vs UAE</div>
-              <div className="text-3xl font-bold">${savings.vsUAE.amount.toLocaleString()}</div>
-              <div className="text-sm text-blue-700">({savings.vsUAE.percentage}% savings)</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="flex flex-col items-center bg-blue-50 rounded-xl p-8 shadow border border-blue-100">
+                <DollarSign className="h-8 w-8 mb-2 text-blue-500" />
+                <div className="text-sm text-blue-700 mb-2 font-semibold">vs USA</div>
+                <div className="text-3xl font-bold text-blue-900">${savings.vsUSA.amount.toLocaleString()}</div>
+                <div className="text-sm text-blue-700">({savings.vsUSA.percentage}% savings)</div>
+              </div>
+              <div className="flex flex-col items-center bg-blue-50 rounded-xl p-8 shadow border border-blue-100">
+                <DollarSign className="h-8 w-8 mb-2 text-blue-500" />
+                <div className="text-sm text-blue-700 mb-2 font-semibold">vs UK</div>
+                <div className="text-3xl font-bold text-blue-900">${savings.vsUK.amount.toLocaleString()}</div>
+                <div className="text-sm text-blue-700">({savings.vsUK.percentage}% savings)</div>
+              </div>
+              <div className="flex flex-col items-center bg-blue-50 rounded-xl p-8 shadow border border-blue-100">
+                <DollarSign className="h-8 w-8 mb-2 text-blue-500" />
+                <div className="text-sm text-blue-700 mb-2 font-semibold">vs UAE</div>
+                <div className="text-3xl font-bold text-blue-900">${savings.vsUAE.amount.toLocaleString()}</div>
+                <div className="text-sm text-blue-700">({savings.vsUAE.percentage}% savings)</div>
+              </div>
             </div>
           </div>
         </section>
