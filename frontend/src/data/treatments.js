@@ -7,7 +7,8 @@ export const treatments = [
     duration: "7-10 days",
     recovery: "4-6 weeks",
     successRate: 95,
-    image: "/api/placeholder/300/200",
+    image: "/src/assets/Cardiac Bypass Surgery.webp",
+    link: "https://medlineplus.gov/ency/article/002946.htm",
     costs: {
       india: {
         treatment: 8000,
@@ -47,7 +48,8 @@ export const treatments = [
     duration: "5-7 days",
     recovery: "3-4 weeks",
     successRate: 98,
-    image: "/api/placeholder/300/200",
+    image: "/src/assets/Hip Replacement.jpg",
+    link: "https://orthoinfo.aaos.org/en/treatment/total-hip-replacement",
     costs: {
       india: {
         treatment: 6000,
@@ -87,7 +89,8 @@ export const treatments = [
     duration: "2-3 days",
     recovery: "1-2 weeks",
     successRate: 97,
-    image: "/api/placeholder/300/200",
+    image: "/src/assets/Dental Implant.webp",
+    link: "https://www.mayoclinic.org/tests-procedures/dental-implant-surgery/about/pac-20384622",
     costs: {
       india: {
         treatment: 1200,
@@ -127,7 +130,8 @@ export const treatments = [
     duration: "3-4 days",
     recovery: "2-3 weeks",
     successRate: 94,
-    image: "/api/placeholder/300/200",
+    image: "/src/assets/Cosmetic Surgery.webp",
+    link: "https://medlineplus.gov/ency/article/002983.htm",
     costs: {
       india: {
         treatment: 2500,
@@ -167,7 +171,8 @@ export const treatments = [
     duration: "14-21 days",
     recovery: "8-12 weeks",
     successRate: 96,
-    image: "/api/placeholder/300/200",
+    image: "/src/assets/Kidney Transplant.jpg",
+    link: "https://www.kidney.org/atoz/content/kidney-transplant",
     costs: {
       india: {
         treatment: 15000,
@@ -207,7 +212,8 @@ export const treatments = [
     duration: "6-8 days",
     recovery: "6-8 weeks",
     successRate: 93,
-    image: "/api/placeholder/300/200",
+    image: "/src/assets/spine surgery.webp",
+    link: "https://www.umms.org/ummc/health-services/orthopedics/services/spine/patient-guides/lumbar-fusion",
     costs: {
       india: {
         treatment: 8500,

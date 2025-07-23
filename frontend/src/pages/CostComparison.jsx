@@ -422,133 +422,133 @@ const CostComparison = () => {
       {/* Main content below hero section */}
       <div ref={comparisonRef} className="w-full px-0 md:px-0 mt-12">
         {/* Configuration Panel */}
-        <section className="w-full flex justify-center items-center mb-12 px-2 md:px-0">
-          <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl p-8 border border-blue-100">
-            <h2 className="text-3xl font-bold mb-8 flex items-center text-blue-900">
-              <Calculator className="h-8 w-8 mr-3 text-blue-600" />
-              Customize Your Comparison
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="space-y-2">
+        <section className="w-full flex justify-center items-center my-12">
+          <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl p-8 border border-blue-100 mx-auto">
+          <h2 className="text-3xl font-bold mb-8 flex items-center text-blue-900">
+            <Calculator className="h-8 w-8 mr-3 text-blue-600" />
+            Customize Your Comparison
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
                   <Stethoscope className="h-4 w-4 text-blue-500" />
                   Select Treatment
                 </label>
                 <div className="relative">
-                  <select
+              <select
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm appearance-none pr-10"
-                    value={selectedTreatment.id}
-                    onChange={(e) => setSelectedTreatment(treatments.find((t) => t.id === parseInt(e.target.value)))}
-                  >
-                    {treatments.map((treatment) => (
-                      <option key={treatment.id} value={treatment.id}>
-                        {treatment.name}
-                      </option>
-                    ))}
-                  </select>
+                value={selectedTreatment.id}
+                onChange={(e) => setSelectedTreatment(treatments.find((t) => t.id === parseInt(e.target.value)))}
+              >
+                {treatments.map((treatment) => (
+                  <option key={treatment.id} value={treatment.id}>
+                    {treatment.name}
+                  </option>
+                ))}
+              </select>
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
                     <Stethoscope className="h-5 w-5" />
                   </span>
                 </div>
-              </div>
+            </div>
 
-              <div className="space-y-2">
+            <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-blue-500" />
                   Your Country
                 </label>
                 <div className="relative">
-                  <select
+              <select
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white shadow-sm appearance-none pr-10"
-                    value={selectedOrigin}
-                    onChange={(e) => setSelectedOrigin(e.target.value)}
-                  >
-                    {originCountries.map((country) => (
-                      <option key={country.code} value={country.code}>
-                        {country.flag} {country.name}
-                      </option>
-                    ))}
-                  </select>
+                value={selectedOrigin}
+                onChange={(e) => setSelectedOrigin(e.target.value)}
+              >
+                {originCountries.map((country) => (
+                  <option key={country.code} value={country.code}>
+                    {country.flag} {country.name}
+                  </option>
+                ))}
+              </select>
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
                     <MapPin className="h-5 w-5" />
                   </span>
                 </div>
-              </div>
+            </div>
 
-              <div className="space-y-2">
+            <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
                   <Clock className="h-4 w-4 text-blue-500" />
                   Hospital Stay (days)
                 </label>
                 <div className="relative">
-                  <input
-                    type="number"
+              <input
+                type="number"
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
-                    value={additionalCosts.days}
-                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, days: parseInt(e.target.value) })}
-                    min="1"
-                    max="30"
-                  />
+                value={additionalCosts.days}
+                onChange={(e) => setAdditionalCosts({ ...additionalCosts, days: parseInt(e.target.value) })}
+                min="1"
+                max="30"
+              />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
                     <Clock className="h-5 w-5" />
                   </span>
                 </div>
-              </div>
+            </div>
 
-              <div className="space-y-2">
+            <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
                   <Building className="h-4 w-4 text-blue-500" />
                   Accommodation (per night)
                 </label>
                 <div className="relative">
-                  <input
-                    type="number"
+              <input
+                type="number"
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
-                    value={additionalCosts.accommodation}
-                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, accommodation: parseInt(e.target.value) })}
-                    min="50"
-                    max="500"
-                  />
+                value={additionalCosts.accommodation}
+                onChange={(e) => setAdditionalCosts({ ...additionalCosts, accommodation: parseInt(e.target.value) })}
+                min="50"
+                max="500"
+              />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
                     <Building className="h-5 w-5" />
                   </span>
                 </div>
-              </div>
+            </div>
 
-              <div className="space-y-2">
+            <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
                   <Users className="h-4 w-4 text-blue-500" />
                   Meals (per day)
                 </label>
                 <div className="relative">
-                  <input
-                    type="number"
+              <input
+                type="number"
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
-                    value={additionalCosts.meals}
-                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, meals: parseInt(e.target.value) })}
-                    min="20"
-                    max="200"
-                  />
+                value={additionalCosts.meals}
+                onChange={(e) => setAdditionalCosts({ ...additionalCosts, meals: parseInt(e.target.value) })}
+                min="20"
+                max="200"
+              />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
                     <Users className="h-5 w-5" />
                   </span>
                 </div>
-              </div>
+            </div>
 
-              <div className="space-y-2">
+            <div className="space-y-2">
                 <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
                   <Plane className="h-4 w-4 text-blue-500" />
                   Transport (per day)
                 </label>
                 <div className="relative">
-                  <input
-                    type="number"
+              <input
+                type="number"
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm pr-10"
-                    value={additionalCosts.local_transport}
-                    onChange={(e) => setAdditionalCosts({ ...additionalCosts, local_transport: parseInt(e.target.value) })}
-                    min="10"
-                    max="100"
-                  />
+                value={additionalCosts.local_transport}
+                onChange={(e) => setAdditionalCosts({ ...additionalCosts, local_transport: parseInt(e.target.value) })}
+                min="10"
+                max="100"
+              />
                   <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-blue-400">
                     <Plane className="h-5 w-5" />
                   </span>
@@ -681,88 +681,54 @@ const CostComparison = () => {
         </section>
 
         {/* Savings Highlight */}
-        <section className="w-full flex justify-center items-center mb-12 px-2 md:px-0">
-          <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl p-8 border border-blue-100">
-            <div className="flex items-center mb-6">
-              <TrendingDown className="h-10 w-10 mr-4 text-blue-600" />
+        <section className="w-full flex justify-center items-center my-12">
+          <div className="w-full max-w-5xl bg-white rounded-2xl shadow-xl p-8 border border-blue-100 mx-auto">
+          <div className="flex items-center mb-6">
+            <TrendingDown className="h-10 w-10 mr-4 text-blue-600" />
               <h3 className="text-3xl font-bold text-blue-900">Your Potential Savings</h3>
-            </div>
+          </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="flex flex-col items-center bg-blue-50 rounded-xl p-8 shadow border border-blue-100">
                 <DollarSign className="h-8 w-8 mb-2 text-blue-500" />
                 <div className="text-sm text-blue-700 mb-2 font-semibold">vs USA</div>
                 <div className="text-3xl font-bold text-blue-900">${savings.vsUSA.amount.toLocaleString()}</div>
-                <div className="text-sm text-blue-700">({savings.vsUSA.percentage}% savings)</div>
-              </div>
+              <div className="text-sm text-blue-700">({savings.vsUSA.percentage}% savings)</div>
+            </div>
               <div className="flex flex-col items-center bg-blue-50 rounded-xl p-8 shadow border border-blue-100">
                 <DollarSign className="h-8 w-8 mb-2 text-blue-500" />
                 <div className="text-sm text-blue-700 mb-2 font-semibold">vs UK</div>
                 <div className="text-3xl font-bold text-blue-900">${savings.vsUK.amount.toLocaleString()}</div>
-                <div className="text-sm text-blue-700">({savings.vsUK.percentage}% savings)</div>
-              </div>
+              <div className="text-sm text-blue-700">({savings.vsUK.percentage}% savings)</div>
+            </div>
               <div className="flex flex-col items-center bg-blue-50 rounded-xl p-8 shadow border border-blue-100">
                 <DollarSign className="h-8 w-8 mb-2 text-blue-500" />
                 <div className="text-sm text-blue-700 mb-2 font-semibold">vs UAE</div>
                 <div className="text-3xl font-bold text-blue-900">${savings.vsUAE.amount.toLocaleString()}</div>
-                <div className="text-sm text-blue-700">({savings.vsUAE.percentage}% savings)</div>
+              <div className="text-sm text-blue-700">({savings.vsUAE.percentage}% savings)</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Cost Comparison Cards */}
-        <section className="w-full p-8 mb-12 mx-auto md:w-full lg:w-full bg-blue-50">
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8 mb-0">
-          <CostCard country="india" costs={totalCostWithTravel.india} isHighlighted={true} />
-          <CostCard country="usa" costs={totalCostWithTravel.usa} />
-          <CostCard country="uk" costs={totalCostWithTravel.uk} />
-          <CostCard country="uae" costs={totalCostWithTravel.uae} />
-        </div>
-        </section>
-
-        {/* Treatment Details */}
-        <section className="w-full p-8 mb-12 mx-auto md:w-full lg:w-full bg-blue-100 rounded-none shadow-none border-none">
-          <h3 className="text-3xl font-bold mb-6 flex items-center text-blue-900">
-            <Stethoscope className="h-8 w-8 mr-3 text-blue-600" />
-            Treatment Details: {selectedTreatment.name}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="flex items-center space-x-4 p-4 bg-blue-50 rounded-2xl">
-              <Clock className="h-8 w-8 text-blue-600" />
-              <div>
-                <div className="text-sm text-gray-600 font-medium">Duration</div>
-                <div className="text-lg font-bold text-gray-900">{selectedTreatment.duration}</div>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4 p-4 bg-purple-50 rounded-2xl">
-              <Building className="h-8 w-8 text-purple-600" />
-              <div>
-                <div className="text-sm text-gray-600 font-medium">Recovery</div>
-                <div className="text-lg font-bold text-gray-900">{selectedTreatment.recovery}</div>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4 p-4 bg-green-50 rounded-2xl">
-              <CheckCircle className="h-8 w-8 text-green-600" />
-              <div>
-                <div className="text-sm text-gray-600 font-medium">Success Rate</div>
-                <div className="text-lg font-bold text-gray-900">{selectedTreatment.successRate}%</div>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4 p-4 bg-teal-50 rounded-2xl">
-              <MapPin className="h-8 w-8 text-teal-600" />
-              <div>
-                <div className="text-sm text-gray-600 font-medium">Category</div>
-                <div className="text-lg font-bold text-gray-900">{selectedTreatment.category}</div>
-              </div>
+        <section className="w-full flex justify-center items-center my-12">
+          <div className="w-full max-w-5xl bg-blue-50 rounded-2xl shadow p-8 mx-auto">
+            <h2 className="text-3xl font-bold mb-8 flex items-center text-blue-900 justify-center">
+              Cost Comparison by Country
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-center">
+              <CostCard country="india" costs={totalCostWithTravel.india} isHighlighted={true} />
+              <CostCard country="usa" costs={totalCostWithTravel.usa} />
+              <CostCard country="uk" costs={totalCostWithTravel.uk} />
+              {/* <CostCard country="uae" costs={totalCostWithTravel.uae} /> Removed as per user request */}
             </div>
           </div>
-          <div className="mt-8 p-6 bg-blue-200 rounded-none border-none">
-            <p className="text-blue-900 text-lg leading-relaxed">{selectedTreatment.description}</p>
-          </div>
         </section>
+        {/* Remove Treatment Details section as per user request */}
 
         {/* What's Included */}
-        <div className="w-full p-8 mb-12 bg-blue-50 rounded-none shadow-none border-none">
+        <div className="w-full flex justify-center items-center my-12">
+          <div className="w-full max-w-7xl bg-blue-50 rounded-2xl shadow p-8 mx-auto">
           <h3 className="text-3xl font-bold mb-8 text-blue-900">What's Included in India Package</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
@@ -807,13 +773,15 @@ const CostComparison = () => {
               <div className="flex items-center p-3 bg-green-50 rounded-xl">
                 <CheckCircle className="h-6 w-6 text-green-600 mr-4" />
                 <span className="font-medium text-gray-900">Medical tourism coordinator</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Important Note */}
-        <div className="w-full bg-blue-200 border-none p-8 mb-12 rounded-none">
+        <div className="w-full flex justify-center items-center my-12">
+          <div className="w-full max-w-7xl bg-blue-200 rounded-2xl shadow p-8 mx-auto">
           <div className="flex items-start">
             <AlertCircle className="h-8 w-8 text-blue-600 mr-4 mt-1" />
             <div>
@@ -823,12 +791,14 @@ const CostComparison = () => {
                 medical condition, hospital choice, and treatment requirements. We recommend getting a personalized
                 quote for accurate pricing.
               </p>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Call to Action */}
-        <div className="w-full text-center p-10 bg-blue-600 text-white shadow-none rounded-none">
+        <div className="w-full flex justify-center items-center my-12">
+          <div className="w-full max-w-7xl bg-blue-600 text-white rounded-2xl shadow p-10 mx-auto">
           <h3 className="text-4xl font-bold mb-4">Ready to Get Started?</h3>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
             Get a personalized quote and start planning your medical journey to India with our expert team
@@ -846,6 +816,7 @@ const CostComparison = () => {
               Get Personalized Quote
               <ArrowRight className="h-6 w-6 ml-3" />
             </button>
+            </div>
           </div>
         </div>
       </div>
